@@ -1,5 +1,5 @@
-#ifndef linked_h
-#define linked_h
+#ifndef linkedlist_h
+#define linkedlist_h
 
 #include <iostream>
 using namespace std;
