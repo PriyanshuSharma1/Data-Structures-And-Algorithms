@@ -1,5 +1,5 @@
 #include <iostream>
-#include "linkedlist.h"
+#include "linked.h"
 
 using namespace std;
 
@@ -9,7 +9,6 @@ Node<T>::Node(T data)
     info = data;
     next = NULL;
 }
-
 template <class T>
 linkedlist<T>::linkedlist()
 {
@@ -19,16 +18,15 @@ linkedlist<T>::linkedlist()
 template <class T>
 linkedlist<T>::~linkedlist()
 {
-    Node<T> t1 = *Head;
-    Node<T> t2 = *Head;
-    while (t2 != NULL)
+    Node<T> *t1 = Head;
+    Node<T> *t2 = Head;
+    while (t1 != NULL)
     {
-        t2 = t2->next;
-        delete t1;
-        t1 = t2
+        t1 = t1->next;
+        delete t2;
+        t2 = t1;
     }
 }
-
 template <class T>
 bool linkedlist<T>::isEmpty()
 {
@@ -38,30 +36,27 @@ bool linkedlist<T>::isEmpty()
     }
     return false;
 }
-
 template <class T>
 void linkedlist<T>::addtoHead(T data)
 {
-    if (Head == NULL)
-    {
-        Head = Tail = newNode;
-    }
-    Node<T> *newNode = new Node;
+    Node<T> *newNode = new Node<T>;
     newNode->info = data;
-    newNode->next = Head->next;
+    newNode->next = Head;
     Head = newNode;
+    if (Tail == NULL)
+    {
+        Tail = Head;
+    }
 }
-
 template <class T>
 void linkedlist<T>::addtoTail(T data)
 {
-    node<T> *newNode = new node<T>;
+    Node<T> *newNode = new Node<T>;
     newNode->info = data;
     newNode->next = NULL;
     Tail->next = newNode;
     Tail = newNode;
 }
-
 template <class T>
 void linkedlist<T>::add(T data, Node<T> *predecessor)
 {
@@ -70,15 +65,14 @@ void linkedlist<T>::add(T data, Node<T> *predecessor)
     newNode->next = predecessor->next;
     predecessor->next = newNode;
 }
-
 template <class T>
 void linkedlist<T>::traverse()
 {
-    node<T> *temp = Head;
-    while (temp != NULL)
+    Node<T> *t1 = Head;
+    while (t1 != NULL)
     {
-        cout << "The data is :" << temp->info << "\n";
-        temp = temp->next;
+        cout << t1->info << "   ";
+        t1 = t1->next;
     }
 }
 template <class T>
@@ -86,9 +80,10 @@ void linkedlist<T>::removefromHead()
 {
     if (!isEmpty())
     {
-        Node<T> *NodeDlt = Head;
+        Node<T> *Node;
+        Node = Head;
         Head = Head->next;
-        delete NodeDlt;
+        delete Node;
         if (Head == NULL)
         {
             Tail = NULL;
@@ -106,31 +101,31 @@ void linkedlist<T>::remove(T data)
         }
         else
         {
-            Node<T> *temp1 = Head;
-            Node<T> *temp2 = Head->next;
-            while (temp2 != NULL)
+            Node<T> *t1 = Head;
+            Node<T> *t2 = Head->next;
+            while (t2 != NULL)
             {
-                if (temp2->info == data)
+                if (t2->info == data)
                 {
                     break;
                 }
-                temp2 = temp2->next;
-                temp1 = temp1->next;
+                t2 = t2->next;
+                t1 = t1->next;
             }
-            if (temp2 != NULL)
+            if (t2 != NULL)
             {
-                temp1->next = temp2->next;
-                delete temp2;
-                if (temp1->next == NULL)
+                t1->next = t2->next;
+                delete t2;
+                if (t1->next == NULL)
                 {
-                    Tail = temp1;
+                    Tail = t1;
                 }
             }
         }
     }
 }
 template <class T>
-bool linkedlist<T>::retrieve(T data, Node<T> *&OutPtr)
+bool linkedlist<T>::retrieve(T data, Node<T> *&outPtr)
 {
     Node<T> *temp = Head;
     while (temp != NULL)
@@ -138,7 +133,7 @@ bool linkedlist<T>::retrieve(T data, Node<T> *&OutPtr)
         if (temp->info == data)
         {
 
-            OutPtr = temp;
+            outPtr = temp;
             return true;
         }
         temp = temp->next;
@@ -159,6 +154,7 @@ bool linkedlist<T>::search(T data)
     }
     return false;
 }
-template class linkedlist<char>;
+
 template class linkedlist<int>;
+template class linkedlist<char>;
 template class linkedlist<float>;
