@@ -1,4 +1,3 @@
-
 #ifndef linked_h
 #define linked_h
 

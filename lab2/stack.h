@@ -1,4 +1,3 @@
-
 #ifndef stack_h
 #define stack_h
 template <class T>

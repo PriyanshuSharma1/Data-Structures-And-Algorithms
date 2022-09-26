@@ -1,16 +1,6 @@
-/**
- * @file stackArray.h
- * @author Bikraj Shrestha
- * @brief
- * @version 0.1
- * @date 2022-09-17
- *
- * @copyright Copyright (c) 2022
- *
- */
 #ifndef stackArray_h
 #define stackArray_h
-#include "linked.h"
+#include "linkedlist.h"
 #include "stack.h"
 #define MAXSIZE 15
 template <class T>

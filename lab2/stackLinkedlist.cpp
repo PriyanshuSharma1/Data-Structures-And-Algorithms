@@ -1,13 +1,3 @@
-/**
- * @file stackLinkedlist.cpp
- * @author Bikraj Shrestha
- * @brief
- * @version 0.1
- * @date 2022-09-17
- *
- * @copyright Copyright (c) 2022
- *
- */
 #include <iostream>
 #define MAXSIZE 15
 #include "stackLinkedlist.h"
